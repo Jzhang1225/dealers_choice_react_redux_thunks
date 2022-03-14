@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import store, { addPerson, deletePerson, reset } from './store';
+import { addPerson, deletePerson, reset } from './store';
 
 const _loadPeople = (props) =>{
     const { people, create, destroy, startOver } = props

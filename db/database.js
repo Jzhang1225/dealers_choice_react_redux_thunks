@@ -2,7 +2,6 @@ const Sequelize = require('sequelize');
 const { STRING, INTEGER, UUID, UUIDV4 } = Sequelize
 const database = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/acme-react-redux', { logging:false });
 const faker = require('faker');
-const { fa } = require('faker/lib/locales');
 
 const People = database.define('person', {
     id: {
