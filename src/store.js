@@ -6,8 +6,15 @@ const LOAD = 'LOAD';
 const ADD = 'ADD';
 const DESTROY = 'DESTROY'
 const RESET = 'RESET'
+const VIEW_CHANGE = 'VIEW_CHANGE'
 
-const reducer = ( state = [], action ) =>{
+const viewReducer = ( state = '', action) =>{
+    if (action.type === VIEW_CHANGE){
+        return action.view
+    }
+    return state
+}
+const peopleReducer = ( state = [], action ) =>{
     if (action.type === LOAD){
         state = action.people
     };
@@ -20,9 +27,13 @@ const reducer = ( state = [], action ) =>{
     if (action.type === RESET){
         state = action.people
     };
-
     return state
 }
+
+const Reducer = combineReducers({
+    people: peopleReducer,
+    view: viewReducer,
+})
 
 const getPeople =()=>{
     return async (dispatch) =>{
@@ -64,7 +75,7 @@ const reset =()=>{
     }
 };
 
-const store = createStore(reducer, applyMiddleware(thunk))
+const store = createStore(Reducer, applyMiddleware(thunk))
 
 export default store;
 export {
